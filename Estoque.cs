@@ -16,11 +16,24 @@ namespace SistemaEstoque
         }
 
         public void Listar()
-        {
-            Console.WriteLine("\n--- ITENS NO ESTOQUE ---");
-            foreach (var p in produtos)
-                Console.WriteLine($"Produto: {p.Nome} | Qtd: {p.Quantidade} | Preço: R${p.Preco:F2}");
-        }
+{
+    Console.WriteLine("\n--- ITENS NO ESTOQUE ---");
+
+    double valorTotal = 0;
+
+    foreach (var p in produtos)
+    {
+        double subtotal = p.Quantidade * p.Preco;
+
+        valorTotal += subtotal;
+
+        Console.WriteLine(
+            $"Produto: {p.Nome} | Qtd: {p.Quantidade} | Preço: R${p.Preco:F2} | Subtotal: R${subtotal:F2}"
+        );
+    }
+
+    Console.WriteLine($"\nValor total em estoque: R${valorTotal:F2}");
+}
 
         private void SalvarNoArquivo()
         {
